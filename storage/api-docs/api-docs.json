@@ -1,0 +1,117 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "description": "API que busca e cadastra pessoas no banco de dados. Criada com Laravel e JWT.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/get/{id}": {
+            "get": {
+                "summary": "Busca uma pessoa do banco de dados",
+                "operationId": "a1242ab196b5e579b6b627906cc20ad5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da pessoa a ser buscada",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": 1,
+                                        "name": "João Pedro"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Sem autenticação"
+                    }
+                }
+            }
+        },
+        "/api/getAll": {
+            "get": {
+                "summary": "Busca todas as pessoas registradas no banco de dados",
+                "operationId": "6adb876cd4fe6eed93757c541f145a09",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": [
+                                        {
+                                            "id": 1,
+                                            "name": "João Pedro"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Maria Luiza"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Sem autenticação"
+                    }
+                }
+            }
+        },
+        "/api/create": {
+            "post": {
+                "summary": "Adiciona uma nova pessoa no banco de dados",
+                "operationId": "09f070d0c00146b340f50c192edb0c53",
+                "requestBody": {
+                    "content": {
+                        "formData": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Jessica Silva"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "401": {
+                        "description": "Sem autenticação"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
