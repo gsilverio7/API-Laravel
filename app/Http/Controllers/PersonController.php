@@ -10,7 +10,7 @@ class PersonController extends Controller
     /**
      * @OA\Info(
      *    title="API",
-     *    description="API que busca e cadastra pessoas no banco de dados. Criada com Laravel e JWT.",
+     *    description="API REST que busca e cadastra pessoas no banco de dados. Criada com Laravel e JWT.",
      *    version="1.0.0",
      * ),
      *   @OA\SecurityScheme(
@@ -35,12 +35,14 @@ class PersonController extends Controller
      * @OA\Get(
      *     path="/api/get/{id}",
      *     summary="Busca uma pessoa do banco de dados",
+     *     tags={"Pessoas"},
+     *     security={{"bearerAuth":{}}}, 
      *     @OA\Parameter(
      *         description="Id da pessoa a ser buscada",
      *         in="path",
      *         name="id",
      *         required=true,
-     *         @OA\Schema(type="int"),
+     *         @OA\Schema(type="integer"),
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -67,6 +69,8 @@ class PersonController extends Controller
      * @OA\Get(
      *     path="/api/getAll",
      *     summary="Busca todas as pessoas registradas no banco de dados",
+     *     tags={"Pessoas"},
+     *     security={{"bearerAuth":{}}}, 
      *     @OA\Response(
      *         response=200,
      *         description="Sucesso",
@@ -92,6 +96,8 @@ class PersonController extends Controller
      * @OA\Post(
      *     path="/api/create",
      *     summary="Adiciona uma nova pessoa no banco de dados",
+     *     tags={"Pessoas"},
+     *     security={{"bearerAuth":{}}}, 
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="formData",
