@@ -11,7 +11,7 @@
                 "tags": [
                     "Autenticação"
                 ],
-                "summary": "Faz login e retorna as credenciais para uso da API",
+                "summary": "Faz login e retorna o token necessário para o uso da API",
                 "operationId": "8dcb70df1020986038d098cc08d05dae",
                 "requestBody": {
                     "required": true,
@@ -39,10 +39,21 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Sucesso"
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "access_token": "xxx.xxx.xxx",
+                                        "token_type": "bearer",
+                                        "expires_in": 3600
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
-                        "description": "Sem autenticação"
+                        "description": "Credenciais inválidas"
                     }
                 }
             }
@@ -56,7 +67,21 @@
                 "operationId": "f0b15943f55143d36f606a2dbd1d2366",
                 "responses": {
                     "200": {
-                        "description": "Sucesso"
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "id": 1,
+                                        "name": "Administrador",
+                                        "email": "admin@mail.com",
+                                        "email_verified_at": null,
+                                        "created_at": "2023-06-18T18:27:36.000000Z",
+                                        "updated_at": "2023-06-18T18:27:36.000000Z"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Sem autenticação"
@@ -96,7 +121,7 @@
                 "tags": [
                     "Autenticação"
                 ],
-                "summary": "Atualiza as credenciais do usuário logado",
+                "summary": "Atualiza o token do usuário logado",
                 "operationId": "b2eae7a8032954d25b46c7ec6f489c68",
                 "responses": {
                     "200": {

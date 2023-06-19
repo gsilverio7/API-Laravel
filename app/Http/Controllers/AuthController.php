@@ -25,7 +25,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *     path="/api/auth/login",
-     *     summary="Faz login e retorna as credenciais para uso da API",
+     *     summary="Faz login e retorna o token necessário para o uso da API",
      *     tags={"Autenticação"},
      *     @OA\RequestBody(
      *         required=true,
@@ -48,11 +48,17 @@ class AuthController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Sucesso"
+     *         description="Sucesso",     
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={"access_token":"xxx.xxx.xxx", "token_type": "bearer", "expires_in": 3600}
+     *             )
+     *         )
      *     ),
      *     @OA\Response(
      *         response=401,
-     *         description="Sem autenticação"
+     *         description="Credenciais inválidas"
      *     )
      * )
      */
@@ -80,7 +86,16 @@ class AuthController extends Controller
      *     security={{"bearerAuth":{}}}, 
      *     @OA\Response(
      *         response=200,
-     *         description="Sucesso"
+     *         description="Sucesso",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={
+     *                      "id": 1,"name": "Administrador","email": "admin@mail.com","email_verified_at": null,
+     *                      "created_at": "2023-06-18T18:27:36.000000Z","updated_at": "2023-06-18T18:27:36.000000Z"
+     *                 }
+     *             )
+     *         )
      *     ),
      *     @OA\Response(
      *         response=401,
@@ -129,12 +144,18 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *     path="/api/auth/refresh",
-     *     summary="Atualiza as credenciais do usuário logado",
+     *     summary="Atualiza o token do usuário logado",
      *     tags={"Autenticação"},
      *     security={{"bearerAuth":{}}}, 
      *     @OA\Response(
      *         response=200,
-     *         description="Sucesso"
+     *         description="Sucesso",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={"access_token":"xxx.xxx.xxx", "token_type": "bearer", "expires_in": 3600}
+     *             )
+     *         )
      *     ),
      *     @OA\Response(
      *         response=401,
