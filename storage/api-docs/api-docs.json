@@ -95,18 +95,17 @@
                 "summary": "Adiciona uma nova pessoa no banco de dados",
                 "operationId": "09f070d0c00146b340f50c192edb0c53",
                 "requestBody": {
+                    "required": true,
                     "content": {
-                        "formData": {
+                        "multipart/form-data": {
                             "schema": {
                                 "properties": {
                                     "name": {
+                                        "description": "Nome da pessoa",
                                         "type": "string"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "name": "Jessica Silva"
-                                }
+                                "type": "object"
                             }
                         }
                     }

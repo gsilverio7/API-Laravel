@@ -99,14 +99,15 @@ class PersonController extends Controller
      *     tags={"Pessoas"},
      *     security={{"bearerAuth":{}}}, 
      *     @OA\RequestBody(
+     *         required=true,
      *         @OA\MediaType(
-     *             mediaType="formData",
+     *             mediaType="multipart/form-data",
      *             @OA\Schema(
      *                 @OA\Property(
+     *                     description="Nome da pessoa",
      *                     property="name",
      *                     type="string"
      *                 ),
-     *                 example={"name": "Jessica Silva"}
      *             )
      *         )
      *     ),
