@@ -22,6 +22,40 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    /**
+     * @OA\Post(
+     *     path="/api/auth/login",
+     *     summary="Faz login e retorna as credenciais para uso da API",
+     *     tags={"Autenticação"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 example={"email": "admin@mail.com", "password": "147258369"},
+     *                 @OA\Property(
+     *                     description="email",
+     *                     property="email",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     description="password",
+     *                     property="password",
+     *                     type="string",
+     *                 ),
+     *             ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
+     */
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -38,6 +72,22 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    /**
+     * @OA\Post(
+     *     path="/api/auth/me",
+     *     summary="Retorna dados sobre o usuário logado",
+     *     tags={"Autenticação"},
+     *     security={{"bearerAuth":{}}}, 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
+     */
     public function me()
     {
         return response()->json(auth()->user());
@@ -47,6 +97,22 @@ class AuthController extends Controller
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
+     */
+    /**
+     * @OA\Post(
+     *     path="/api/auth/logout",
+     *     summary="Faz logout",
+     *     tags={"Autenticação"},
+     *     security={{"bearerAuth":{}}}, 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
      */
     public function logout()
     {
@@ -59,6 +125,22 @@ class AuthController extends Controller
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
+     */
+    /**
+     * @OA\Post(
+     *     path="/api/auth/refresh",
+     *     summary="Atualiza as credenciais do usuário logado",
+     *     tags={"Autenticação"},
+     *     security={{"bearerAuth":{}}}, 
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
      */
     public function refresh()
     {
