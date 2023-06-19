@@ -8,6 +8,11 @@ use App\Services\PersonService;
 class PersonController extends Controller
 {
     /**
+     * O controlador apenas recebe as chamadas e devolve as repostas. 
+     * A maior parte do código e da lógica da API está na service PersonService.
+     */
+
+    /**
      * @OA\Info(
      *    title="API",
      *    description="API REST que busca e cadastra pessoas no banco de dados. Criada com Laravel e JWT.",

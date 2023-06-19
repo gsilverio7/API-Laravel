@@ -6,6 +6,10 @@ use App\Models\Person;
 
 class PersonService
 {
+    /**
+     * A service é responsável por receber os dados das chamadas a API, 
+     * fazer as devidas chamadas ao banco de dados e retornar a resposta.
+     */
     private $model;
 
     public function __construct(Person $person)
