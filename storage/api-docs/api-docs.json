@@ -125,7 +125,18 @@
                 "operationId": "b2eae7a8032954d25b46c7ec6f489c68",
                 "responses": {
                     "200": {
-                        "description": "Sucesso"
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "access_token": "xxx.xxx.xxx",
+                                        "token_type": "bearer",
+                                        "expires_in": 3600
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Sem autenticação"
@@ -234,6 +245,48 @@
                                 "properties": {
                                     "name": {
                                         "description": "Nome da pessoa",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "401": {
+                        "description": "Sem autenticação"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/update": {
+            "put": {
+                "tags": [
+                    "Pessoas"
+                ],
+                "summary": "Altera o registro de uma pessoa no banco de dados",
+                "operationId": "a479b88efc9064832b944f2a9896c80e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Id da pessoa a ser alterada",
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "description": "Novo nome da pessoa",
                                         "type": "string"
                                     }
                                 },

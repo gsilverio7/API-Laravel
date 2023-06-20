@@ -35,4 +35,5 @@ Route::group([
         ->where('id', '[0-9]+');
     Route::get('getAll', 'App\Http\Controllers\PersonController@getAll');
     Route::post('create', 'App\Http\Controllers\PersonController@create');
+    Route::put('update', 'App\Http\Controllers\PersonController@update');
 });

@@ -130,4 +130,43 @@ class PersonController extends Controller
     {
         return response()->json($this->service->create($request->all()));
     }
+
+    /**
+     * @OA\Put(
+     *     path="/api/update",
+     *     summary="Altera o registro de uma pessoa no banco de dados",
+     *     tags={"Pessoas"},
+     *     security={{"bearerAuth":{}}}, 
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     description="Id da pessoa a ser alterada",
+     *                     property="id",
+     *                     type="int"
+     *                 ),
+     *                 @OA\Property(
+     *                     description="Novo nome da pessoa",
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
+     */
+    public function update(Request $request)
+    {
+        return response()->json($this->service->update($request->all()));
+    }
 }

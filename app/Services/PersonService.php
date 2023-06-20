@@ -46,4 +46,26 @@ class PersonService
             return false;
         }
     }
+
+    public function delete(array $dados): bool
+    {
+        try {
+            $this->model::find($dados['id'])
+                ->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function update(array $dados): bool
+    {
+        try {
+            $this->model::find($dados['id'])
+                ->update($dados);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 }
