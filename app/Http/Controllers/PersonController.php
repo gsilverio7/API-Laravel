@@ -43,7 +43,7 @@ class PersonController extends Controller
      *     tags={"Pessoas"},
      *     security={{"bearerAuth":{}}}, 
      *     @OA\Parameter(
-     *         description="Id da pessoa a ser buscada",
+     *         description="Id da pessoa",
      *         in="path",
      *         name="id",
      *         required=true,
@@ -143,7 +143,7 @@ class PersonController extends Controller
      *             mediaType="application/x-www-form-urlencoded",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     description="Id da pessoa a ser alterada",
+     *                     description="Id da pessoa",
      *                     property="id",
      *                     type="int"
      *                 ),
@@ -168,5 +168,39 @@ class PersonController extends Controller
     public function update(Request $request)
     {
         return response()->json($this->service->update($request->all()));
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/delete",
+     *     summary="Apaga o registro de uma pessoa do banco de dados",
+     *     tags={"Pessoas"},
+     *     security={{"bearerAuth":{}}}, 
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     description="Id da pessoa",
+     *                     property="id",
+     *                     type="int"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sucesso"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Sem autenticação"
+     *     )
+     * )
+     */
+    public function delete(Request $request)
+    {
+        return response()->json($this->service->delete($request->all()));
     }
 }

@@ -160,7 +160,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id da pessoa a ser buscada",
+                        "description": "Id da pessoa",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -282,12 +282,50 @@
                             "schema": {
                                 "properties": {
                                     "id": {
-                                        "description": "Id da pessoa a ser alterada",
+                                        "description": "Id da pessoa",
                                         "type": "integer"
                                     },
                                     "name": {
                                         "description": "Novo nome da pessoa",
                                         "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "401": {
+                        "description": "Sem autenticação"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/delete": {
+            "delete": {
+                "tags": [
+                    "Pessoas"
+                ],
+                "summary": "Apaga o registro de uma pessoa do banco de dados",
+                "operationId": "6d1255f4a31a00a700298780a140c711",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Id da pessoa",
+                                        "type": "integer"
                                     }
                                 },
                                 "type": "object"

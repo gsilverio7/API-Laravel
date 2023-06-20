@@ -36,4 +36,5 @@ Route::group([
     Route::get('getAll', 'App\Http\Controllers\PersonController@getAll');
     Route::post('create', 'App\Http\Controllers\PersonController@create');
     Route::put('update', 'App\Http\Controllers\PersonController@update');
+    Route::delete('delete', 'App\Http\Controllers\PersonController@delete');
 });
