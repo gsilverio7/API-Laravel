@@ -28,7 +28,7 @@ Para usar a API é necessário fazer o login para obter as credenciais. Já exis
 
 Feito isso, é possível testar todas as outras funções da API de forma similar ao que é feito no passo 1.
 
-Alternativamente, basta fazer uma chamada para o endereço "api/auth/login" informando o email e a senha em forma de JSON:
+Alternativamente, basta fazer uma chamada para o endereço "api/auth/login" via POST informando o email e a senha em forma de JSON:
 ```
 {
     "email": "admin@mail.com",
